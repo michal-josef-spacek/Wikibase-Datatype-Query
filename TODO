@@ -2,7 +2,13 @@ TODO
 ====
 1. Activity::Commons::Vote::Load::_look_for_structured_item() move to this
    library.
-2.
+2. There is situation, where is name string on Commons
+like: https://commons.wikimedia.org/wiki/File:Barokn%C3%AD_sochy_v_R%C5%AF%C5%BEov%C3%A9_zahrad%C4%9B_d%C4%9B%C4%8D%C3%ADnsk%C3%A9ho_z%C3%A1mku.jpg
+some value
+- author name string: František Šťastný
+- Wikimedia username: František Šťastný
+- URL: https://commons.wikimedia.org/wiki/user:Franti%C5%A1ek_%C5%A0%C5%A5astn%C3%BD
+3.
 
 Applied
 =======
