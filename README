@@ -1,0 +1,74 @@
+NAME
+    Wikibase::Datatype::Query - Query class on Wikibase item.
+
+SYNOPSIS
+     use Wikibase::Datatype::Query;
+
+     my $obj = Wikibase::Datatype::Query->new;
+     my $res = $obj->query($item_obj, $property);
+     my $res = $obj->query_item($item_obj, $property);
+
+METHODS
+  "new"
+     my $obj = Wikibase::Datatype::Query->new;
+
+    Constructor.
+
+    Returns instance of object.
+
+  "query"
+     my $res = $obj->query($item_obj, $property);
+
+    Query Wikibase::Datatype::Item item for value.
+
+    Returns value or undef.
+
+ERRORS
+     new():
+             From Class::Utils::set_params():
+                     Unknown parameter '%s'.
+
+     query():
+             Parameter 'item' is required.
+             Parameter 'item' must be a 'Wikibase::Datatype::Item' object.
+
+     query_item():
+             Parameter 'item' is required.
+             Parameter 'item' must be a 'Wikibase::Datatype::Item' object.
+
+EXAMPLE
+     use strict;
+     use warnings;
+
+     use Wikibase::Datatype::Query;
+
+     my $obj = Wikibase::Datatype::Query->new;
+
+ 
+
+     # Output like:
+     # TODO
+
+DEPENDENCIES
+    Class::Utils, Error::Pure, Scalar::Util.
+
+SEE ALSO
+    Wikibase::Datatype
+        Wikibase datatypes.
+
+REPOSITORY
+    <https://github.com/michal-josef-spacek/Wikibase-Item-Query>
+
+AUTHOR
+    Michal Josef Špaček <mailto:skim@cpan.org>
+
+    <http://skim.cz>
+
+LICENSE AND COPYRIGHT
+    © 2022 Michal Josef Špaček
+
+    BSD 2-Clause License
+
+VERSION
+    0.01
+
