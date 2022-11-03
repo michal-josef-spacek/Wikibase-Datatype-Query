@@ -35,8 +35,8 @@ $obj = Wikibase::Datatype::Query->new;
 eval {
 	$obj->query_item('bad');
 };
-is($EVAL_ERROR, "Item must be a 'Wikibase::Datatype::Item' object.\n",
-	"Item must be a 'Wikibase::Datatype::Item' object. (bad).");
+is($EVAL_ERROR, "Item must be a 'Wikibase::Datatype::Item' or 'Wikibase::Datatype::Mediainfo' object.\n",
+	"Item must be a 'Wikibase::Datatype::Item' or 'Wikibase::Datatype::Mediainfo' object. (bad).");
 clean();
 
 # Test.
@@ -44,6 +44,6 @@ $obj = Wikibase::Datatype::Query->new;
 eval {
 	$obj->query_item(Test::MockObject->new);
 };
-is($EVAL_ERROR, "Item must be a 'Wikibase::Datatype::Item' object.\n",
-	"Item must be a 'Wikibase::Datatype::Item' object. (Test::MockObject).");
+is($EVAL_ERROR, "Item must be a 'Wikibase::Datatype::Item' or 'Wikibase::Datatype::Mediainfo' object.\n",
+	"Item must be a 'Wikibase::Datatype::Item' or 'Wikibase::Datatype::Mediainfo' object. (Test::MockObject).");
 clean();
