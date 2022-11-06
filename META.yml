@@ -22,8 +22,10 @@ meta-spec:
 name: Wikibase-Datatype-Query
 no_index:
   directory:
+    - examples
     - inc
     - t
+    - xt
 requires:
   Class::Utils: 0.03
   Error::Pure: 0.15
