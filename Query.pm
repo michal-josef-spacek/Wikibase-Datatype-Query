@@ -60,8 +60,8 @@ sub query_item {
 		return $self->_query_property($item, $query_string);
 
 	# Label.
-	} elsif ($query_string =~ m/^label:([\w\-]+):(.*)$/ms) {
-		# TODO
+	} elsif ($query_string =~ m/^label:?([\w\-]+)?$/ms) {
+		return $self->_query_label($item, $1);
 
 	# Description.
 	} elsif ($query_string =~ m/^description:([\w\-]+):(.*)$/ms) {
@@ -71,6 +71,25 @@ sub query_item {
 	}
 
 	return;
+}
+
+sub _query_label {
+	my ($self, $item, $lang) = @_;
+
+	my @values;
+	foreach my $label (@{$item->labels}) {
+		if (defined $label->value) {
+			if (defined $lang) {
+				if ($label->language eq $lang) {
+					push @values, $label->value;
+				}
+			} else {
+				push @values, $label->value;
+			}
+		}
+	}
+
+	return wantarray ? @values : $values[0];
 }
 
 sub _query_property {
