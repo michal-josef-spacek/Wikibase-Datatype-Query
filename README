@@ -5,7 +5,7 @@ SYNOPSIS
      use Wikibase::Datatype::Query;
 
      my $obj = Wikibase::Datatype::Query->new;
-     my $res = $obj->query($item_obj, $property);
+     my $res = $obj->query($obj, $property);
      my $res = $obj->query_item($item_obj, $property);
 
 METHODS
@@ -17,6 +17,13 @@ METHODS
     Returns instance of object.
 
   "query"
+     my $res = $obj->query($obj, $property);
+
+    Query Wikibase::Datatype object for value.
+
+    Returns value or undef.
+
+  "query_item"
      my $res = $obj->query($item_obj, $property);
 
     Query Wikibase::Datatype::Item item for value.
@@ -40,14 +47,21 @@ EXAMPLE
      use strict;
      use warnings;
 
+     use Test::Shared::Fixture::Wikibase::Datatype::Item::Wikidata::Dog;
      use Wikibase::Datatype::Query;
 
      my $obj = Wikibase::Datatype::Query->new;
 
- 
+     my $item = Test::Shared::Fixture::Wikibase::Datatype::Item::Wikidata::Dog->new;
+
+     my $ret = $obj->query_item($item, 'P31');
+
+     print "Query for P31 property on Test::Shared::Fixture::Wikibase::Datatype::Item::Wikidata::Dog:\n";
+     print $ret."\n";
 
      # Output like:
-     # TODO
+     # Query for P31 property on Test::Shared::Fixture::Wikibase::Datatype::Item::Wikidata::Dog:
+     # Q55983715
 
 DEPENDENCIES
     Class::Utils, Error::Pure, Scalar::Util.
