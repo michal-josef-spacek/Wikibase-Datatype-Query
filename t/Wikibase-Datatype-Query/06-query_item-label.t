@@ -17,9 +17,9 @@ is($ret, 'dog', 'Get English label (dog).');
 # Test.
 $obj = Wikibase::Datatype::Query->new;
 my @ret = $obj->query_item($item, 'label');
-is_deeply(\@ret, ['dog', 'pes'], 'Get all P31 values ([dog, pes]).');
+is_deeply(\@ret, ['pes', 'dog'], 'Get all P31 values ([pes, dog).');
 
 # Test.
 $obj = Wikibase::Datatype::Query->new;
 $ret = $obj->query_item($item, 'label');
-is($ret, 'dog', 'Get first P31 value (dog).');
+is($ret, 'pes', 'Get first P31 value (pes).');
