@@ -61,11 +61,11 @@ sub query_item {
 
 	# Label.
 	} elsif ($query_string =~ m/^label:?([\w\-]+)?$/ms) {
-		return $self->_query_label($item, $1);
+		return $self->_query_text($item, $1, 'labels');
 
 	# Description.
-	} elsif ($query_string =~ m/^description:([\w\-]+):(.*)$/ms) {
-		# TODO
+	} elsif ($query_string =~ m/^description:?([\w\-]+)?$/ms) {
+		return $self->_query_text($item, $1, 'descriptions');
 	} else {
 		err "Unsupported query string '$query_string'.";
 	}
@@ -73,18 +73,18 @@ sub query_item {
 	return;
 }
 
-sub _query_label {
-	my ($self, $item, $lang) = @_;
+sub _query_text {
+	my ($self, $item, $lang, $method) = @_;
 
 	my @values;
-	foreach my $label (@{$item->labels}) {
-		if (defined $label->value) {
+	foreach my $text (@{$item->$method}) {
+		if (defined $text->value) {
 			if (defined $lang) {
-				if ($label->language eq $lang) {
-					push @values, $label->value;
+				if ($text->language eq $lang) {
+					push @values, $text->value;
 				}
 			} else {
-				push @values, $label->value;
+				push @values, $text->value;
 			}
 		}
 	}

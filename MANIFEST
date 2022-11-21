@@ -20,7 +20,8 @@ README
 t/Wikibase-Datatype-Query/01-use.t
 t/Wikibase-Datatype-Query/02-version.t
 t/Wikibase-Datatype-Query/03-new.t
-t/Wikibase-Datatype-Query/04-query_item-label.t
-t/Wikibase-Datatype-Query/05-query_item-property.t
+t/Wikibase-Datatype-Query/05-query_item-description.t
+t/Wikibase-Datatype-Query/06-query_item-label.t
+t/Wikibase-Datatype-Query/07-query_item-property.t
 xt/Wikibase-Datatype-Query/01-pod_coverage.t
 xt/Wikibase-Datatype-Query/02-pod.t
