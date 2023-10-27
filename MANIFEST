@@ -17,6 +17,7 @@ MANIFEST			This list of files
 META.yml
 Query.pm
 README
+SIGNATURE
 t/Wikibase-Datatype-Query/01-use.t
 t/Wikibase-Datatype-Query/02-version.t
 t/Wikibase-Datatype-Query/03-new.t
