@@ -214,7 +214,7 @@ Wikibase datatypes.
 
 =head1 REPOSITORY
 
-L<https://github.com/michal-josef-spacek/Wikibase-Item-Query>
+L<https://github.com/michal-josef-spacek/Wikibase-Datatype-Query>
 
 =head1 AUTHOR
 
