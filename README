@@ -14,6 +14,13 @@ METHODS
 
     Constructor.
 
+    *   "deprecated"
+
+        Flag which controls query of deprecated values. Zero (0) means no
+        deprecated values in result.
+
+        Default value is 0.
+
     Returns instance of object.
 
   "query"

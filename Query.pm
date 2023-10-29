@@ -16,6 +16,9 @@ sub new {
 	# Create object.
 	my $self = bless {}, $class;
 
+	# Mode for deprecated values.
+	$self->{'deprecated'} = 0;
+
 	# Process parameters.
 	set_params($self, @params);
 
@@ -99,6 +102,12 @@ sub _query_property {
 
 	my @values;
 	foreach my $statement (@{$item->statements}) {
+
+		# Skip deprecated if 'deprecated' parameters is on 0.
+		if (! $self->{'deprecated'} && $statement->rank eq 'deprecated') {
+			next;
+		}
+
 		my $snak = $statement->snak;
 		if ($snak->snaktype ne 'value' || $snak->property ne $property) {
 			next;
@@ -140,6 +149,17 @@ Wikibase::Datatype::Query - Query class on Wikibase item.
  my $obj = Wikibase::Datatype::Query->new;
 
 Constructor.
+
+=over
+
+=item * C<deprecated>
+
+Flag which controls query of deprecated values.
+Zero (0) means no deprecated values in result.
+
+Default value is 0.
+
+=back
 
 Returns instance of object.
 
