@@ -1,4 +1,4 @@
-0.02
+0.02 2023-10-29T18:36:22+01:00
  - Add 'deprecated' parameter to handle deprecated values in query.
  - Fix repository link in doc.
 
