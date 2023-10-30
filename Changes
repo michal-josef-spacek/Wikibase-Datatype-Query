@@ -1,4 +1,5 @@
 0.03
+ - Add tests for query_item() errors.
  - Add query for alias.
 
 0.02 2023-10-29T18:36:22+01:00
