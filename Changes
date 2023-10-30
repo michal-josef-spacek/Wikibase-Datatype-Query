@@ -1,4 +1,5 @@
 0.03
+ - Add test for Mediainfo object.
  - Add tests for query_item() errors.
  - Add query for alias.
  - Improve test messages.

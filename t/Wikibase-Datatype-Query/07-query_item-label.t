@@ -1,13 +1,15 @@
 use strict;
 use warnings;
 
-use Test::More 'tests' => 5;
+use Test::More 'tests' => 6;
 use Test::NoWarnings;
 use Test::Shared::Fixture::Wikibase::Datatype::Item::Wikidata::Dog;
+use Test::Shared::Fixture::Wikibase::Datatype::Mediainfo::Commons::ImageOfHuman;
 use Wikibase::Datatype::Query;
 
 # Common.
 my $item = Test::Shared::Fixture::Wikibase::Datatype::Item::Wikidata::Dog->new;
+my $mediainfo = Test::Shared::Fixture::Wikibase::Datatype::Mediainfo::Commons::ImageOfHuman->new;
 
 # Test.
 my $obj = Wikibase::Datatype::Query->new;
@@ -28,3 +30,8 @@ is_deeply(\@ret, ['pes', 'dog'], 'Get Item all label values ([pes, dog).');
 $obj = Wikibase::Datatype::Query->new;
 $ret = $obj->query_item($item, 'label');
 is($ret, 'pes', 'Get Item first label value (pes).');
+
+# Test.
+$obj = Wikibase::Datatype::Query->new;
+$ret = $obj->query_item($mediainfo, 'label');
+is($ret, 'Portrait of Douglas Adams', 'Get Mediainfo first label value (Portrait of Douglas Adams).');
