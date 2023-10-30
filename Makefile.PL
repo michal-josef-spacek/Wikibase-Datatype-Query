@@ -32,7 +32,7 @@ test_requires 'Test::NoWarnings' => 0;
 test_requires 'Test::Shared::Fixture::Wikibase::Datatype::Item::Wikidata::Dog' => 0.24;
 test_requires 'Test::Shared::Fixture::Wikibase::Datatype::Mediainfo::Commons::ImageOfHuman' => 0.22;
 tests_recursive;
-version '0.03';
+version '0.04';
 
 # Run.
 WriteAll();
