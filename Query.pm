@@ -62,6 +62,10 @@ sub query_item {
 	if ($query_string =~ m/^P\d+$/ms) {
 		return $self->_query_property($item, $query_string);
 
+	# Alias.
+	} elsif ($query_string =~ m/^alias:?([\w\-]+)?$/ms) {
+		return $self->_query_text($item, $1, 'aliases');
+
 	# Label.
 	} elsif ($query_string =~ m/^label:?([\w\-]+)?$/ms) {
 		return $self->_query_text($item, $1, 'labels');

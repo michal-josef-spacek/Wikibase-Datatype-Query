@@ -6,7 +6,6 @@ some value
 - author name string: František Šťastný
 - Wikimedia username: František Šťastný
 - URL: https://commons.wikimedia.org/wiki/user:Franti%C5%A1ek_%C5%A0%C5%A5astn%C3%BD
-3. Lookup for alias.
 4.
 
 Applied
@@ -14,3 +13,6 @@ Applied
 1. Activity::Commons::Vote::Load::_look_for_structured_item() move to this
    library.
 OK [20221121] skim
+
+3. Lookup for alias.
+OK [20231030] skim
