@@ -80,25 +80,6 @@ sub query_item {
 	return;
 }
 
-sub _query_text {
-	my ($self, $item, $lang, $method) = @_;
-
-	my @values;
-	foreach my $text (@{$item->$method}) {
-		if (defined $text->value) {
-			if (defined $lang) {
-				if ($text->language eq $lang) {
-					push @values, $text->value;
-				}
-			} else {
-				push @values, $text->value;
-			}
-		}
-	}
-
-	return wantarray ? @values : $values[0];
-}
-
 sub _query_property {
 	my ($self, $item, $property) = @_;
 
@@ -120,6 +101,25 @@ sub _query_property {
 		my $value = $datavalue->value;
 		if (defined $value) {
 			push @values, $value;
+		}
+	}
+
+	return wantarray ? @values : $values[0];
+}
+
+sub _query_text {
+	my ($self, $item, $lang, $method) = @_;
+
+	my @values;
+	foreach my $text (@{$item->$method}) {
+		if (defined $text->value) {
+			if (defined $lang) {
+				if ($text->language eq $lang) {
+					push @values, $text->value;
+				}
+			} else {
+				push @values, $text->value;
+			}
 		}
 	}
 
