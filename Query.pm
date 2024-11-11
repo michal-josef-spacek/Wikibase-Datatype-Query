@@ -37,6 +37,8 @@ sub query {
 	} elsif ($datatype->isa('Wikibase::Datatype::Mediainfo')) {
 		# XXX Provisional
 		return $self->query_item($datatype, $query_string);
+	} elsif ($datatype->isa('Wikibase::Datatype::Lexeme')) {
+		return $self->query_lexeme($datatype, $query_string);
 	} else {
 		err "Datatype doesn't supported.",
 			'Ref', (ref $datatype),
@@ -80,6 +82,47 @@ sub query_item {
 	return;
 }
 
+sub query_lexeme {
+	my ($self, $lexeme, $query_string) = @_;
+
+	if (! defined $lexeme) {
+		err "Lexeme is required.";
+	}
+	if (! blessed($lexeme) || ! $lexeme->isa('Wikibase::Datatype::Lexeme')) {
+		err "Item must be a 'Wikibase::Datatype::Lexeme' object.";
+	}
+
+	# Property.
+	if ($query_string =~ m/^P\d+$/ms) {
+		return $self->_query_property($lexeme, $query_string);
+
+	# Sense property.
+	} elsif ($query_string =~ m/^sense_(P\d+)$/ms) {
+		return $self->_query_sense($lexeme, $1);
+
+	# Form property.
+	} elsif ($query_string =~ m/^form_(P\d+)$/ms) {
+		return $self->_query_form($lexeme, $1);
+	
+	} else {
+		err "Unsupported query string '$query_string'.";
+	}
+
+	return;
+}
+
+sub _query_form {
+	my ($self, $lexeme, $query_string) = @_;
+
+	my @values;
+	foreach my $form (@{$lexeme->forms}) {
+		push @values, $self->_query_property($form, $query_string);
+	}
+
+	return wantarray ? @values : $values[0];
+}
+
+
 sub _query_property {
 	my ($self, $item, $property) = @_;
 
@@ -102,6 +145,17 @@ sub _query_property {
 		if (defined $value) {
 			push @values, $value;
 		}
+	}
+
+	return wantarray ? @values : $values[0];
+}
+
+sub _query_sense {
+	my ($self, $lexeme, $query_string) = @_;
+
+	my @values;
+	foreach my $sense (@{$lexeme->senses}) {
+		push @values, $self->_query_property($sense, $query_string);
 	}
 
 	return wantarray ? @values : $values[0];
