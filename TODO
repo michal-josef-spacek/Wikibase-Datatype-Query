@@ -7,7 +7,8 @@ some value
 - Wikimedia username: František Šťastný
 - URL: https://commons.wikimedia.org/wiki/user:Franti%C5%A1ek_%C5%A0%C5%A5astn%C3%BD
 4. Rewrite results to Data::Wikibase::Query::Response.
-5.
+5. Rewrite requests to Data::Wikibase::Query::Request.
+6.
 
 Applied
 =======
