@@ -197,8 +197,10 @@ Wikibase::Datatype::Query - Query class on Wikibase item.
  use Wikibase::Datatype::Query;
 
  my $obj = Wikibase::Datatype::Query->new;
- my $res = $obj->query($obj, $property);
- my $res = $obj->query_item($item_obj, $property);
+ my $res = $obj->query($obj, $query_string);
+ my @res = $obj->query($obj, $query_string);
+ my $res = $obj->query_item($item_obj, $query_string);
+ my @res = $obj->query_item($item_obj, $query_string);
  my $res = $obj->query_lexeme($lexeme_obj, $query_string);
  my @res = $obj->query_lexeme($lexeme_obj, $query_string);
 
@@ -225,19 +227,47 @@ Returns instance of object.
 
 =head2 C<query>
 
- my $res = $obj->query($obj, $property);
+ my $res = $obj->query($obj, $query_string);
+ my @res = $obj->query($obj, $query_string);
 
 Query L<Wikibase::Datatype> object for value.
+Supported C<$obj> objects are L<Wikibase::Datatype::Item>, L<Wikibase::Datatype::Lexeme>
+and L<Wikibase::Datatype::Mediainfo>.
 
-Returns value or undef.
+Returns value or undef in scalar context.
+Returns list of values in array context.
 
 =head2 C<query_item>
 
- my $res = $obj->query($item_obj, $property);
+ my $res = $obj->query($item_obj, $query_string);
+ my @res = $obj->query_item($item_obj, $query_string);
 
 Query L<Wikibase::Datatype::Item> item for value.
 
-Returns value or undef.
+Possible C<$query_string> values are:
+
+=over
+
+=item P\d+
+
+For property value.
+
+=item alias:.*
+
+For alias value.
+
+=item description:.*
+
+For description value.
+
+=item label:.*
+
+For label value.
+
+=back
+
+Returns value or undef in scalar context.
+Returns list of values in array context.
 
 =head2 C<query_lexeme>
 
@@ -245,6 +275,24 @@ Returns value or undef.
  my @res = $obj->query_lexeme($lexeme_obj, $query_string);
 
 Query L<Wikibase::Datatype::Lexeme> item for value.
+
+Possible C<$query_string> values are:
+
+=over
+
+=item P\d+
+
+For property value.
+
+=item form:P\d+
+
+For form property value.
+
+=item sense:P\d+
+
+For sense property value.
+
+=back
 
 Returns value or undef in scalar context.
 Returns list of values in array context.
@@ -260,8 +308,9 @@ Returns list of values in array context.
          Parameter 'item' must be a 'Wikibase::Datatype::Item' object.
 
  query_item():
-         Parameter 'item' is required.
-         Parameter 'item' must be a 'Wikibase::Datatype::Item' object.
+         Item is required.
+         Item must be a 'Wikibase::Datatype::Item' or 'Wikibase::Datatype::Mediainfo' object.
+         Unsupported query string '%s'.
 
  query_lexeme():
          Item must be a 'Wikibase::Datatype::Lexeme' object.

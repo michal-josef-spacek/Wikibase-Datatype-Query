@@ -5,8 +5,10 @@ SYNOPSIS
      use Wikibase::Datatype::Query;
 
      my $obj = Wikibase::Datatype::Query->new;
-     my $res = $obj->query($obj, $property);
-     my $res = $obj->query_item($item_obj, $property);
+     my $res = $obj->query($obj, $query_string);
+     my @res = $obj->query($obj, $query_string);
+     my $res = $obj->query_item($item_obj, $query_string);
+     my @res = $obj->query_item($item_obj, $query_string);
      my $res = $obj->query_lexeme($lexeme_obj, $query_string);
      my @res = $obj->query_lexeme($lexeme_obj, $query_string);
 
@@ -26,24 +28,55 @@ METHODS
     Returns instance of object.
 
   "query"
-     my $res = $obj->query($obj, $property);
+     my $res = $obj->query($obj, $query_string);
+     my @res = $obj->query($obj, $query_string);
 
-    Query Wikibase::Datatype object for value.
+    Query Wikibase::Datatype object for value. Supported $obj objects are
+    Wikibase::Datatype::Item, Wikibase::Datatype::Lexeme and
+    Wikibase::Datatype::Mediainfo.
 
-    Returns value or undef.
+    Returns value or undef in scalar context. Returns list of values in
+    array context.
 
   "query_item"
-     my $res = $obj->query($item_obj, $property);
+     my $res = $obj->query($item_obj, $query_string);
+     my @res = $obj->query_item($item_obj, $query_string);
 
     Query Wikibase::Datatype::Item item for value.
 
-    Returns value or undef.
+    Possible $query_string values are:
+
+    P\d+
+        For property value.
+
+    alias:.*
+        For alias value.
+
+    description:.*
+        For description value.
+
+    label:.*
+        For label value.
+
+    Returns value or undef in scalar context. Returns list of values in
+    array context.
 
   "query_lexeme"
      my $res = $obj->query_lexeme($lexeme_obj, $query_string);
      my @res = $obj->query_lexeme($lexeme_obj, $query_string);
 
     Query Wikibase::Datatype::Lexeme item for value.
+
+    Possible $query_string values are:
+
+    P\d+
+        For property value.
+
+    form:P\d+
+        For form property value.
+
+    sense:P\d+
+        For sense property value.
 
     Returns value or undef in scalar context. Returns list of values in
     array context.
@@ -58,8 +91,9 @@ ERRORS
              Parameter 'item' must be a 'Wikibase::Datatype::Item' object.
 
      query_item():
-             Parameter 'item' is required.
-             Parameter 'item' must be a 'Wikibase::Datatype::Item' object.
+             Item is required.
+             Item must be a 'Wikibase::Datatype::Item' or 'Wikibase::Datatype::Mediainfo' object.
+             Unsupported query string '%s'.
 
      query_lexeme():
              Item must be a 'Wikibase::Datatype::Lexeme' object.
