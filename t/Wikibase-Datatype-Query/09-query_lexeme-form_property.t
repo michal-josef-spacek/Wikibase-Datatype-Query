@@ -12,10 +12,10 @@ my $item = Test::Shared::Fixture::Wikibase::Datatype::Lexeme::Wikidata::DogCzech
 
 # Test.
 my $obj = Wikibase::Datatype::Query->new;
-my $ret = $obj->query_lexeme($item, 'form_P898');
+my $ret = $obj->query_lexeme($item, 'form:P898');
 is($ret, decode_utf8('pɛs'), 'Get Lexeme form P898 value in scalar context (pɛs).');
 
 # Test.
 $obj = Wikibase::Datatype::Query->new;
-my @ret = $obj->query_lexeme($item, 'form_P898');
+my @ret = $obj->query_lexeme($item, 'form:P898');
 is_deeply(\@ret, [decode_utf8('pɛs')], 'Get Lexeme form P898 value in array context (pɛs).');

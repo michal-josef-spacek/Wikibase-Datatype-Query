@@ -97,11 +97,11 @@ sub query_lexeme {
 		return $self->_query_property($lexeme, $query_string);
 
 	# Sense property.
-	} elsif ($query_string =~ m/^sense_(P\d+)$/ms) {
+	} elsif ($query_string =~ m/^sense:(P\d+)$/ms) {
 		return $self->_query_sense($lexeme, $1);
 
 	# Form property.
-	} elsif ($query_string =~ m/^form_(P\d+)$/ms) {
+	} elsif ($query_string =~ m/^form:(P\d+)$/ms) {
 		return $self->_query_form($lexeme, $1);
 	
 	} else {
