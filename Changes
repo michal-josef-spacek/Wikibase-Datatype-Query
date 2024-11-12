@@ -1,4 +1,5 @@
 0.04
+ - Add doc for query_lexeme() method.
  - Add query process for lexeme (statements).
  - Add tests for lexeme statement queries.
  - Update copyright years.

@@ -7,6 +7,8 @@ SYNOPSIS
      my $obj = Wikibase::Datatype::Query->new;
      my $res = $obj->query($obj, $property);
      my $res = $obj->query_item($item_obj, $property);
+     my $res = $obj->query_lexeme($lexeme_obj, $query_string);
+     my @res = $obj->query_lexeme($lexeme_obj, $query_string);
 
 METHODS
   "new"
@@ -37,6 +39,15 @@ METHODS
 
     Returns value or undef.
 
+  "query_lexeme"
+     my $res = $obj->query_lexeme($lexeme_obj, $query_string);
+     my @res = $obj->query_lexeme($lexeme_obj, $query_string);
+
+    Query Wikibase::Datatype::Lexeme item for value.
+
+    Returns value or undef in scalar context. Returns list of values in
+    array context.
+
 ERRORS
      new():
              From Class::Utils::set_params():
@@ -50,7 +61,12 @@ ERRORS
              Parameter 'item' is required.
              Parameter 'item' must be a 'Wikibase::Datatype::Item' object.
 
-EXAMPLE
+     query_lexeme():
+             Item must be a 'Wikibase::Datatype::Lexeme' object.
+             Lexeme is required.
+             Unsupported query string '%s'.
+
+EXAMPLE1
      use strict;
      use warnings;
 
@@ -69,6 +85,26 @@ EXAMPLE
      # Output like:
      # Query for P31 property on Test::Shared::Fixture::Wikibase::Datatype::Item::Wikidata::Dog:
      # Q55983715
+
+EXAMPLE2
+     use strict;
+     use warnings;
+
+     use Test::Shared::Fixture::Wikibase::Datatype::Lexeme::Wikidata::DogCzechNoun;
+     use Wikibase::Datatype::Query;
+
+     my $obj = Wikibase::Datatype::Query->new;
+
+     my $item = Test::Shared::Fixture::Wikibase::Datatype::Lexeme::Wikidata::DogCzechNoun->new;
+
+     my $ret = $obj->query_lexeme($item, 'P5185');
+
+     print "Query for P5185 property on Test::Shared::Fixture::Wikibase::Datatype::Lexeme::Wikidata::DogCzechNoun:\n";
+     print $ret."\n";
+
+     # Output like:
+     # Query for P5185 property on Test::Shared::Fixture::Wikibase::Datatype::Lexeme::Wikidata::DogCzechNoun:
+     # Q499327
 
 DEPENDENCIES
     Class::Utils, Error::Pure, Scalar::Util.

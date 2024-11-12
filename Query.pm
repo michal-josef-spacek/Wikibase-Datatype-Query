@@ -199,6 +199,8 @@ Wikibase::Datatype::Query - Query class on Wikibase item.
  my $obj = Wikibase::Datatype::Query->new;
  my $res = $obj->query($obj, $property);
  my $res = $obj->query_item($item_obj, $property);
+ my $res = $obj->query_lexeme($lexeme_obj, $query_string);
+ my @res = $obj->query_lexeme($lexeme_obj, $query_string);
 
 =head1 METHODS
 
@@ -237,6 +239,16 @@ Query L<Wikibase::Datatype::Item> item for value.
 
 Returns value or undef.
 
+=head2 C<query_lexeme>
+
+ my $res = $obj->query_lexeme($lexeme_obj, $query_string);
+ my @res = $obj->query_lexeme($lexeme_obj, $query_string);
+
+Query L<Wikibase::Datatype::Lexeme> item for value.
+
+Returns value or undef in scalar context.
+Returns list of values in array context.
+
 =head1 ERRORS
 
  new():
@@ -251,7 +263,12 @@ Returns value or undef.
          Parameter 'item' is required.
          Parameter 'item' must be a 'Wikibase::Datatype::Item' object.
 
-=head1 EXAMPLE
+ query_lexeme():
+         Item must be a 'Wikibase::Datatype::Lexeme' object.
+         Lexeme is required.
+         Unsupported query string '%s'.
+
+=head1 EXAMPLE1
 
 =for comment filename=query_item.pl
 
@@ -273,6 +290,29 @@ Returns value or undef.
  # Output like:
  # Query for P31 property on Test::Shared::Fixture::Wikibase::Datatype::Item::Wikidata::Dog:
  # Q55983715
+
+=head1 EXAMPLE2
+
+=for comment filename=query_lexeme.pl
+
+ use strict;
+ use warnings;
+
+ use Test::Shared::Fixture::Wikibase::Datatype::Lexeme::Wikidata::DogCzechNoun;
+ use Wikibase::Datatype::Query;
+
+ my $obj = Wikibase::Datatype::Query->new;
+
+ my $item = Test::Shared::Fixture::Wikibase::Datatype::Lexeme::Wikidata::DogCzechNoun->new;
+
+ my $ret = $obj->query_lexeme($item, 'P5185');
+
+ print "Query for P5185 property on Test::Shared::Fixture::Wikibase::Datatype::Lexeme::Wikidata::DogCzechNoun:\n";
+ print $ret."\n";
+
+ # Output like:
+ # Query for P5185 property on Test::Shared::Fixture::Wikibase::Datatype::Lexeme::Wikidata::DogCzechNoun:
+ # Q499327
 
 =head1 DEPENDENCIES
 
