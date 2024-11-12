@@ -68,13 +68,13 @@ sub query_item {
 	} elsif ($query_string =~ m/^alias:?([\w\-]+)?$/ms) {
 		return $self->_query_text($item, $1, 'aliases');
 
-	# Label.
-	} elsif ($query_string =~ m/^label:?([\w\-]+)?$/ms) {
-		return $self->_query_text($item, $1, 'labels');
-
 	# Description.
 	} elsif ($query_string =~ m/^description:?([\w\-]+)?$/ms) {
 		return $self->_query_text($item, $1, 'descriptions');
+
+	# Label.
+	} elsif ($query_string =~ m/^label:?([\w\-]+)?$/ms) {
+		return $self->_query_text($item, $1, 'labels');
 	} else {
 		err "Unsupported query string '$query_string'.";
 	}
