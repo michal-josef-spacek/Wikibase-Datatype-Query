@@ -1,5 +1,6 @@
 Changes
 examples/query_item.pl
+examples/query_lexeme.pl
 inc/Module/Install.pm
 inc/Module/Install/AuthorRequires.pm
 inc/Module/Install/AuthorTests.pm
