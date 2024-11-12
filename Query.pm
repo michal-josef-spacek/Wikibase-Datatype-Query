@@ -75,6 +75,10 @@ sub query_item {
 	# Label.
 	} elsif ($query_string =~ m/^label:?([\w\-]+)?$/ms) {
 		return $self->_query_text($item, $1, 'labels');
+
+	# Statement(s)
+	} elsif ($query_string =~ m/^statement:(P\d+)$/ms) {
+		return $self->_query_property_statement($item, $1);
 	} else {
 		err "Unsupported query string '$query_string'.";
 	}
@@ -145,6 +149,28 @@ sub _query_property {
 		if (defined $value) {
 			push @values, $value;
 		}
+	}
+
+	return wantarray ? @values : $values[0];
+}
+
+sub _query_property_statement {
+	my ($self, $item, $pid) = @_;
+
+	my @values;
+	foreach my $statement (@{$item->statements}) {
+
+		# Skip deprecated if 'deprecated' parameters is on 0.
+		if (! $self->{'deprecated'} && $statement->rank eq 'deprecated') {
+			next;
+		}
+
+		my $snak = $statement->snak;
+		if ($snak->property ne $pid) {
+			next;
+		}
+
+		push @values, $statement;
 	}
 
 	return wantarray ? @values : $values[0];
@@ -263,6 +289,10 @@ For description value.
 =item label:.*
 
 For label value.
+
+=item statement:P\d+
+
+For full property statements.
 
 =back
 

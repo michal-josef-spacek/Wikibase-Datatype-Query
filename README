@@ -58,6 +58,9 @@ METHODS
     label:.*
         For label value.
 
+    statement:P\d+
+        For full property statements.
+
     Returns value or undef in scalar context. Returns list of values in
     array context.
 
