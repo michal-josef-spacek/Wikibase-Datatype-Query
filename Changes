@@ -1,3 +1,5 @@
+0.05
+
 0.04 2024-11-12T09:02:57+01:00
  - Add doc for query_lexeme() method.
  - Add query process for lexeme (statements).

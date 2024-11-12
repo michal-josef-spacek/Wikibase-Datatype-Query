@@ -33,7 +33,7 @@ test_requires 'Test::Shared::Fixture::Wikibase::Datatype::Item::Wikidata::Dog' =
 test_requires 'Test::Shared::Fixture::Wikibase::Datatype::Lexeme::Wikidata::DogCzechNoun' => 0.19;
 test_requires 'Test::Shared::Fixture::Wikibase::Datatype::Mediainfo::Commons::ImageOfHuman' => 0.22;
 tests_recursive;
-version '0.04';
+version '0.05';
 
 # Run.
 WriteAll();
