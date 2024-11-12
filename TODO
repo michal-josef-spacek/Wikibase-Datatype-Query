@@ -8,7 +8,9 @@ some value
 - URL: https://commons.wikimedia.org/wiki/user:Franti%C5%A1ek_%C5%A0%C5%A5astn%C3%BD
 4. Rewrite results to Data::Wikibase::Query::Response.
 5. Rewrite requests to Data::Wikibase::Query::Request.
-6.
+6. Implement Utils with basic callbacks for results
+In value result: e.g. value or Wikibase::Datatype::Value or value defined by lang or value + qualifiers (plus custom callback)
+7.
 
 Applied
 =======
