@@ -1,6 +1,7 @@
 0.05
  - Add query process for full statement defined by property in item.
  - Regen MANIFEST file.
+ - Update copyright years.
 
 0.04 2024-11-12T09:02:57+01:00
  - Add doc for query_lexeme() method.
