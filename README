@@ -58,6 +58,9 @@ METHODS
     label:.*
         For label value.
 
+    sitelink:.*
+        For sitelink.
+
     statement:P\d+
         For full property statements.
 
